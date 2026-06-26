@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: stg_stores
+    columns:
+      - name: STORE_ID
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_department
+    columns:
+      - name: STORE_ID
+        tests:
+          - not_null
+      - name: DEPT_ID
+        tests:
+          - not_null
+      - name: STORE_DATE
+        tests:
+          - not_null
+
+  - name: stg_fact
+    columns:
+      - name: STORE_ID
+        tests:
+          - not_null
+      - name: STORE_DATE
+        tests:
+          - not_null
+
+  - name: dim_store
+    columns:
+      - name: STORE_ID
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_date
+    columns:
+      - name: DATE_ID
+        tests:
+          - not_null
+          - unique
+
+  - name: fact_sales
+    columns:
+      - name: STORE_ID
+        tests:
+          - not_null
+      - name: DEPT_ID
+        tests:
+          - not_null
+      - name: DATE_ID
+        tests:
+          - not_null

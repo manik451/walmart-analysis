@@ -1,0 +1,25 @@
+SELECT
+    d.STORE_ID,
+    d.DEPT_ID,
+    dt.DATE_ID,
+    d.STORE_WEEKLY_SALES,
+    f.FUEL_PRICE,
+    f.STORE_TEMPERATURE,
+    f.UNEMPLOYMENT,
+    f.CPI,
+    f.MARKDOWN1,
+    f.MARKDOWN2,
+    f.MARKDOWN3,
+    f.MARKDOWN4,
+    f.MARKDOWN5,
+    CURRENT_TIMESTAMP() AS INSERT_DATE,
+    CURRENT_TIMESTAMP() AS UPDATE_DATE
+FROM {{ ref('stg_department') }} d
+LEFT JOIN {{ ref('stg_fact') }} f
+    ON d.STORE_ID = f.STORE_ID
+   AND d.STORE_DATE = f.STORE_DATE
+LEFT JOIN {{ ref('dim_date') }} dt
+    ON d.STORE_DATE = dt.STORE_DATE
+WHERE d.STORE_ID IS NOT NULL
+  AND d.DEPT_ID IS NOT NULL
+  AND d.STORE_DATE IS NOT NULL
