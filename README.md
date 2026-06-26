@@ -34,3 +34,9 @@ Finally, the curated Gold-layer tables are queried using **Snowflake SQL** and *
 * Dimensional modeling (Fact & Dimension tables)
 * Interactive analytics dashboard using Streamlit
 
+##Silver layer Transformation
+DISTINCT       → removes duplicate rows
+UPPER/TRIM     → standardizes text values
+COALESCE       → replaces null markdown/sales values with 0
+WHERE filters  → removes invalid records
+column aliases → gives business-friendly names
