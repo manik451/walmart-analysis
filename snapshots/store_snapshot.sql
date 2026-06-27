@@ -14,6 +14,6 @@ SELECT
     STORE_ID,
     STORE_TYPE,
     STORE_SIZE
-FROM {{ ref('dim_store') }}
+FROM {{ ref('walmart_store_dim') }}
 
 {% endsnapshot %}

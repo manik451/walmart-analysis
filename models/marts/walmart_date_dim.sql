@@ -1,3 +1,9 @@
+{{ config(
+    materialized='incremental',
+    unique_key='DATE_ID',
+    schema='GOLD'
+) }}
+
 SELECT DISTINCT
     TO_NUMBER(TO_CHAR(STORE_DATE, 'YYYYMMDD')) AS DATE_ID,
     STORE_DATE,

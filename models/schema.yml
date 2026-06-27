@@ -2,6 +2,7 @@ version: 2
 
 models:
   - name: stg_stores
+    description: "Cleaned Silver staging model for Walmart store information."
     columns:
       - name: STORE_ID
         tests:
@@ -9,6 +10,21 @@ models:
           - unique
 
   - name: stg_department
+    description: "Cleaned Silver staging model for department sales."
+
+  - name: stg_fact
+    description: "Cleaned Silver staging model for store metrics."
+
+  - name: walmart_date_dim
+    description: "SCD Type 1 Date Dimension."
+    columns:
+      - name: DATE_ID
+        tests:
+          - not_null
+          - unique
+
+  - name: walmart_store_dim
+    description: "SCD Type 1 Store Dimension."
     columns:
       - name: STORE_ID
         tests:
@@ -16,34 +32,9 @@ models:
       - name: DEPT_ID
         tests:
           - not_null
-      - name: STORE_DATE
-        tests:
-          - not_null
 
-  - name: stg_fact
-    columns:
-      - name: STORE_ID
-        tests:
-          - not_null
-      - name: STORE_DATE
-        tests:
-          - not_null
-
-  - name: dim_store
-    columns:
-      - name: STORE_ID
-        tests:
-          - not_null
-          - unique
-
-  - name: dim_date
-    columns:
-      - name: DATE_ID
-        tests:
-          - not_null
-          - unique
-
-  - name: fact_sales
+  - name: walmart_fact_table
+    description: "SCD Type 2 Fact Table containing sales and external factors."
     columns:
       - name: STORE_ID
         tests:

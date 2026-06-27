@@ -1,7 +1,13 @@
+{{ config(
+    materialized='table',
+    schema='GOLD'
+) }}
+
 SELECT
     d.STORE_ID,
     d.DEPT_ID,
     dt.DATE_ID,
+    s.STORE_SIZE,
     d.STORE_WEEKLY_SALES,
     f.FUEL_PRICE,
     f.STORE_TEMPERATURE,
@@ -13,12 +19,16 @@ SELECT
     f.MARKDOWN4,
     f.MARKDOWN5,
     CURRENT_TIMESTAMP() AS INSERT_DATE,
-    CURRENT_TIMESTAMP() AS UPDATE_DATE
+    CURRENT_TIMESTAMP() AS UPDATE_DATE,
+    CURRENT_TIMESTAMP() AS VRSN_START_DATE,
+    CAST(NULL AS TIMESTAMP) AS VRSN_END_DATE
 FROM {{ ref('stg_department') }} d
 LEFT JOIN {{ ref('stg_fact') }} f
     ON d.STORE_ID = f.STORE_ID
    AND d.STORE_DATE = f.STORE_DATE
-LEFT JOIN {{ ref('dim_date') }} dt
+LEFT JOIN {{ ref('stg_stores') }} s
+    ON d.STORE_ID = s.STORE_ID
+LEFT JOIN {{ ref('walmart_date_dim') }} dt
     ON d.STORE_DATE = dt.STORE_DATE
 WHERE d.STORE_ID IS NOT NULL
   AND d.DEPT_ID IS NOT NULL
