@@ -1,7 +1,7 @@
 # Walmart Data Engineering Project
 ### End-to-End ETL Pipeline using AWS S3, Snowflake, dbt, Python & Plotly
 
-## 📌 Project Overview
+## Project Overview
 
 This project demonstrates an end-to-end modern data engineering pipeline built using **AWS S3**, **Snowflake**, **dbt**, **Python**, and **Plotly**.
 
@@ -20,7 +20,7 @@ Finally, curated Gold-layer tables are queried from Snowflake using **Python**, 
 
 ---
 
-# 🏗️ Architecture
+# Architecture
 
 ```
 CSV Files
@@ -49,7 +49,7 @@ Python + Plotly Dashboard
 
 ---
 
-# 🛠️ Technology Stack
+# Technology Stack
 
 - AWS S3
 - Snowflake
@@ -63,7 +63,7 @@ Python + Plotly Dashboard
 
 ---
 
-# 🚀 Key Features
+# Key Features
 
 - End-to-End ETL Pipeline
 - Medallion Architecture (Bronze → Silver → Gold)
@@ -81,7 +81,7 @@ Python + Plotly Dashboard
 
 ---
 
-# 🥈 Silver Layer Transformations
+# Silver Layer Transformations
 
 The Silver layer is responsible for cleaning, validating, and standardizing raw Bronze data before it is consumed by business models.
 
@@ -99,7 +99,7 @@ Implemented transformations include:
 
 ---
 
-# 🥇 Gold Layer
+# Gold Layer
 
 The Gold layer contains business-ready analytical models.
 
@@ -116,7 +116,7 @@ The Gold layer is optimized for reporting and business analytics.
 
 ---
 
-# 📊 Python Dashboard
+# Python Dashboard
 
 The Python application connects directly to the Snowflake Gold layer using the Snowflake Connector.
 
@@ -137,7 +137,7 @@ It generates interactive Plotly dashboards, including:
 
 ---
 
-# 🔄 Slowly Changing Dimensions
+# Slowly Changing Dimensions
 
 ### SCD Type 1
 
@@ -164,7 +164,7 @@ Used for:
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```
 walmart-analysis
@@ -192,7 +192,7 @@ walmart-analysis
 
 ---
 
-# 🔐 Security
+# Security
 
 Sensitive Snowflake credentials are **not stored** in the repository.
 
