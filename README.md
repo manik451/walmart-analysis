@@ -34,9 +34,135 @@ Finally, the curated Gold-layer tables are queried using **Snowflake SQL** and *
 * Dimensional modeling (Fact & Dimension tables)
 * Interactive analytics dashboard using Streamlit
 
-##Silver layer Transformation
-DISTINCT       → removes duplicate rows
-UPPER/TRIM     → standardizes text values
-COALESCE       → replaces null markdown/sales values with 0
-WHERE filters  → removes invalid records
-column aliases → gives business-friendly names
+# 🥈 Silver Layer Transformations
+
+The Silver layer is responsible for cleaning, validating, and standardizing raw Bronze data before it is consumed by business models.
+
+Implemented transformations include:
+
+| Transformation | Purpose |
+|---------------|---------|
+| DISTINCT | Removes duplicate records |
+| UPPER() | Standardizes text values |
+| TRIM() | Removes leading/trailing spaces |
+| COALESCE() | Replaces NULL values with default values |
+| WHERE Filters | Removes invalid or incomplete records |
+| Column Aliases | Uses business-friendly column names |
+| Data Type Standardization | Ensures consistent datatypes |
+
+---
+
+# 🥇 Gold Layer
+
+The Gold layer contains business-ready analytical models.
+
+### Dimension Tables
+
+- Walmart_Date_Dim
+- Walmart_Store_Dim
+
+### Fact Table
+
+- Walmart_Fact_Table
+
+The Gold layer is optimized for reporting and business analytics.
+
+---
+
+# 📊 Python Dashboard
+
+The Python application connects directly to the Snowflake Gold layer using the Snowflake Connector.
+
+It generates interactive Plotly dashboards, including:
+
+- Top 10 Stores by Sales
+- Top Departments by Sales
+- Fuel Price vs Weekly Sales
+- Temperature vs Weekly Sales
+- CPI vs Weekly Sales
+- Markdown Analysis
+- Weekly Sales Distribution
+- KPI Summary
+  - Total Sales
+  - Total Stores
+  - Total Departments
+  - Average Weekly Sales
+
+---
+
+# 🔄 Slowly Changing Dimensions
+
+### SCD Type 1
+
+Implemented using dbt models.
+
+- Existing records are updated.
+- Historical values are not preserved.
+
+Used for:
+
+- Store Dimension
+- Date Dimension
+
+### SCD Type 2
+
+Implemented using dbt Snapshots.
+
+- Historical versions are preserved.
+- Tracks changes over time using version start and end dates.
+
+Used for:
+
+- Walmart Fact Table Snapshot
+
+---
+
+# 📂 Project Structure
+
+```
+walmart-analysis
+│
+├── models
+├── macros
+├── snapshots
+├── tests
+├── seeds
+├── analyses
+│
+├── python
+│   ├── connection_test.py
+│   ├── dashboard_html.py
+│   ├── sales_analysis.py
+│   ├── local_to_aws_s3.py
+│   ├── requirements.txt
+│   ├── output
+│   └── .env.example
+│
+├── dbt_project.yml
+├── README.md
+└── .gitignore
+```
+
+---
+
+# 🔐 Security
+
+Sensitive Snowflake credentials are **not stored** in the repository.
+
+Credentials are managed using:
+
+- `.env`
+- `.gitignore`
+
+An `.env.example` file is included as a template.
+
+---
+
+# 📈 Future Enhancements
+
+- Automate ingestion using Snowpipe
+- Orchestrate workflows using Apache Airflow
+- Deploy dashboards using Streamlit Cloud
+- Integrate CI/CD using GitHub Actions
+- Add data quality monitoring using dbt tests
+
